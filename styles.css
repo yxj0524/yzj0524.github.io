@@ -1,0 +1,413 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    font-family: 'Microsoft YaHei', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    touch-action: none;
+    overflow-x: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overscroll-behavior: none;
+}
+
+.container {
+    text-align: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 95%;
+    margin: 1rem;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.character-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+    transform: translateZ(0);
+}
+
+.character {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    transform: translateZ(0);
+}
+
+.speech-bubble {
+    position: absolute;
+    top: 50%;
+    right: -180px;
+    transform: translateY(-50%);
+    background: #ff6b6b;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    animation: float 2s infinite;
+}
+
+.bubble-content {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.bubble-tail {
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid #ff6b6b;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(-50%) translateX(0); }
+    50% { transform: translateY(-50%) translateX(5px); }
+}
+
+.face {
+    width: 100%;
+    height: 100%;
+    background: #ffd93d;
+    border-radius: 50%;
+    position: relative;
+    animation: bounce 2s infinite;
+    box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateZ(0);
+}
+
+.eyes {
+    position: absolute;
+    top: 35%;
+    width: 100%;
+}
+
+.eye {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    animation: blink 3s infinite;
+    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.1);
+    transform: translateZ(0);
+}
+
+.eye.left {
+    left: 25%;
+}
+
+.eye.right {
+    right: 25%;
+}
+
+.pupil {
+    width: 15px;
+    height: 15px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s cubic-bezier(0.2, 0, 0.2, 1);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+.sparkle {
+    width: 8px;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    animation: sparkle 2s infinite;
+}
+
+.mouth {
+    width: 60px;
+    height: 30px;
+    border-radius: 0 0 30px 30px;
+    background: #ff6b6b;
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+.tongue {
+    width: 20px;
+    height: 20px;
+    background: #ff6b6b;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.eyebrows {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+}
+
+.eyebrow {
+    width: 25px;
+    height: 5px;
+    background: #333;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    transition: all 0.3s;
+}
+
+.eyebrow.left {
+    left: 25%;
+    transform: rotate(-10deg);
+}
+
+.eyebrow.right {
+    right: 25%;
+    transform: rotate(10deg);
+}
+
+.title {
+    color: #ff6b6b;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hunger-meter {
+    width: 100%;
+    height: 20px;
+    background: #eee;
+    border-radius: 10px;
+    margin: 1rem 0;
+    overflow: hidden;
+}
+
+.meter-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+    transition: width 0.3s ease;
+}
+
+.food-container {
+    margin-top: 2rem;
+}
+
+.food-btn {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.food-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.food-items {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.food {
+    font-size: 2rem;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+    width: 60px;
+    height: 60px;
+    line-height: 1;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.food:hover {
+    transform: scale(1.2) rotate(10deg);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.food:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.score {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #666;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes blink {
+    0%, 48%, 52%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(0.1); }
+}
+
+@keyframes look-around {
+    0%, 100% { transform: translate(-50%, -50%); }
+    25% { transform: translate(-30%, -50%); }
+    50% { transform: translate(-50%, -30%); }
+    75% { transform: translate(-70%, -50%); }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.food.flying {
+    position: fixed;
+    z-index: 1000;
+    animation: fly 1s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+@keyframes fly {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(var(--x), var(--y)) rotate(360deg); }
+}
+
+.character.eating .mouth {
+    height: 60px;
+    width: 80px;
+    border-radius: 50%;
+    animation: chew 0.5s infinite;
+}
+
+.character.eating .tongue {
+    opacity: 1;
+    height: 30px;
+    bottom: -20px;
+}
+
+.character.eating .eye {
+    transform: scaleY(0.1);
+    animation: none;
+}
+
+.character.eating .eyebrow {
+    transform: rotate(-5deg);
+}
+
+@keyframes chew {
+    0%, 100% { transform: translateX(-50%) scaleX(1); }
+    50% { transform: translateX(-50%) scaleX(0.8); }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+        margin: 0.5rem;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        border-radius: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .character {
+        width: 150px;
+        height: 150px;
+    }
+
+    .speech-bubble {
+        right: -140px;
+        padding: 0.8rem 1.2rem;
+    }
+
+    .bubble-content {
+        font-size: 1rem;
+    }
+
+    .food {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .food-items {
+        gap: 0.5rem;
+        padding: 0.5rem;
+    }
+
+    .title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hunger-meter {
+        margin: 0.5rem 0;
+    }
+
+    .score {
+        margin-top: 0.5rem;
+    }
+} 
